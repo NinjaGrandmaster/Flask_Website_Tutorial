@@ -84,3 +84,22 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
+
+# Dynamic component, indicated as the <username> URL component that is surrounded by < and >. When a
+# route has a dynamic component, Flask will accept any text in that portion of the URL, and will invoke the view
+# function with the actual text as an argument. For example, if the client browser requests URL /user/susan, the view
+# function is  going to be called with the argument username set to 'susan'.
+@app.route('/user/<username>')
+@login_required
+def user(username):
+    # first_or_404(), which works exactly like first() when there are results, but in the case that there are no
+    # results automatically sends a 404 error back to the client. saves you checking if the query returned a user,
+    # because when the username does not exist in the database the function will not return and instead a 404 exception
+    # will be raised.
+    user = User.query.filter_by(username=username).first_or_404()
+    posts = [
+        {'author': user, 'body': 'Test post #1'},
+        {'author': user, 'body': 'Test post #2'}
+    ]
+    return render_template('user.html', user=user, posts=posts)
