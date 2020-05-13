@@ -9,3 +9,5 @@
 
 ####Note:
     Run FLASK_APP=microblog.py this before using flask shell
+    export FLASK_DEBUG=1
+    
