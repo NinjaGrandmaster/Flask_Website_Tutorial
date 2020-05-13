@@ -1,7 +1,7 @@
 from app import app, db
 from app.models import User, Post
 
-# left off: ch6 - More Interesting Profiles
+# left off: ch6 - profile editor
 
 @app.shell_context_processor
 def make_shell_context():
