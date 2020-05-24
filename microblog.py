@@ -1,7 +1,7 @@
 from app import app, db
 from app.models import User, Post
 
-# left off: ch7 - custom error pages
+# left off: ch7 - Sending Errors by Email
 
 @app.shell_context_processor
 def make_shell_context():
